@@ -126,8 +126,8 @@ export default {
       padding: 0,
     },
     close: {
-      backgroundColor: 'white',
-      color: 'black',
+      backgroundColor: 'background',
+      color: 'primary',
       fontWeight: 200,
       padding: 0,
       fontSize: 3,
