@@ -1,5 +1,7 @@
 # Expenses
 
+[SEE LIVE](https://expenses.klainz.dev)
+
 A PWA with full offline support for your expenses.
 You can save it to your homescreen and use it daily to track all your :beer:  and
 :coffee: expenses.
