@@ -1,0 +1,32 @@
+name: Deploy Client
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  firebase-deploy-client:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: list
+        run: ls -la
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+      - run: npm install
+      - run: npm run build
+
+      - name: Deploy
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+# todo: only run in change in ./client
