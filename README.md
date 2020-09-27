@@ -30,8 +30,8 @@ Styling is done with juicy [Theme UI](https://https://theme-ui.com/).
 
 ## TODO:
 
-- [] Expenses aggregations collection for statistics
-- [] custom categories
-- [] account support with sync, backup
-- [] animations
-- [] desktop support 
+- [ ] Expenses aggregations collection for statistics
+- [ ]  custom categories
+- [ ] account support with sync, backup
+- [ ] animations
+- [ ] desktop support 
