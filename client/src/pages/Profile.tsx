@@ -69,8 +69,8 @@ export default () => {
                 <Radio
                   name='dark-mode'
                   value='dark'
-                  onClick={() => setColorMode('dark')}
-                  defaultChecked={colorMode === 'dark'}
+                  onChange={() => setColorMode('dark')}
+                  checked={colorMode === 'dark'}
                 />
                 Dark
               </Label>
@@ -78,7 +78,7 @@ export default () => {
                 <Radio
                   name='light-mode'
                   value='light'
-                  onClick={() => setColorMode('light')}
+                  onChange={() => setColorMode('light')}
                   checked={colorMode === 'light'}
                 />
                 Light
