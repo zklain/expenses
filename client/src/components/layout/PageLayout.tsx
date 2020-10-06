@@ -7,7 +7,7 @@ export const Layout = ({ children }: { children: ReactNode }) => (
       display: 'flex',
       flexDirection: 'column',
       height: '100vh',
-      px: [4],
+      // px: [4],
       pb: ['3.5rem'],
     }}>
     {children}
@@ -21,6 +21,19 @@ export const PageContent = ({ children }: { children: ReactNode }) => (
       width: '100%',
       height: '100%',
     }}>
-    {children}
+    <Box
+      sx={{
+        height: '100%',
+        position: 'absolute',
+        width: '100%',
+        px: [4],
+        overflowY: 'scroll',
+        pb: ['150px'],
+        '&:-webkit-scrollbar ': {
+          backgroundColor: 'transparent',
+        },
+      }}>
+      {children}
+    </Box>
   </Box>
 );

@@ -6,6 +6,7 @@ export default ({ children = null }: { children: any }) => (
     <Box
       sx={{
         py: [3, 4],
+        px: [4],
       }}>
       {children}
     </Box>

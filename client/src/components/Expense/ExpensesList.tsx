@@ -1,21 +1,16 @@
 import React from 'react';
 import Expense from './Expense';
 import { ExpenseDocType } from '../../@types/expense';
-import { Box, Flex, Heading } from 'theme-ui';
+import { Box, Heading } from 'theme-ui';
 import Date from './Date';
 
-export default ({ expenses }: { expenses: Array<ExpenseDocType[]> }) =>
-  // list wrap
+export default ({ expenses }: { expenses: Array<ExpenseDocType[]> }) => {
+  if (!expenses.length) {
+    return <Heading>No expanses. Good for you!</Heading>;
+  }
 
-  expenses.length > 0 ? (
-    <Box
-      sx={{
-        height: '100%',
-        position: 'absolute',
-        width: '100%',
-        overflowY: 'scroll',
-        pb: ['150px'],
-      }}>
+  return (
+    <>
       {expenses.map((forDay: ExpenseDocType[], index: number) => (
         <Box
           key={forDay[0].createdAt}
@@ -26,7 +21,6 @@ export default ({ expenses }: { expenses: Array<ExpenseDocType[]> }) =>
           ))}
         </Box>
       ))}
-    </Box>
-  ) : (
-    <Heading>No expanses. Good for you!</Heading>
+    </>
   );
+};

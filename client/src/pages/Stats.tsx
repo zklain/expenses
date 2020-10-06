@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState, useMemo } from 'react';
 import { Box, Heading, Text } from 'theme-ui';
-import Header from '../components/layout/Header';
 import { DatabaseContext } from '../db/DatabaseContext';
-import Container from '../components/layout/Container';
-import Card from '../components/layout/Card';
 import {
   countMonthsAvg,
   countTotal,
@@ -17,6 +14,8 @@ import { useQuery } from '../db/useQuery';
 import MonthsSwitcher, {
   TimeRangeButt,
 } from '../components/Expense/TimeRangeControl';
+import { Layout, PageContent, Header, Card } from '../components/layout';
+import Loading from '../components/Loading';
 
 // todo: needed?
 
@@ -53,7 +52,7 @@ export default () => {
   };
 
   return (
-    <Box sx={{ overflowY: 'scroll', maxHeight: '100vh' }}>
+    <Layout>
       <Header>
         <Heading variant='headerHeading'>Stats</Heading>
         {/* <Box>
@@ -61,31 +60,27 @@ export default () => {
           <MonthSwitchButt onClick={() => moveYear(-1)}>{'>'}</MonthSwitchButt>
         </Box> */}
       </Header>
-      <main>
-        {/* todo: content container variant */}
-        <Container mt={6} mb={5}>
-          {dbLoading || loading ? (
-            <Box>
-              <Text>Loading...</Text>
-            </Box>
-          ) : (
-            <>
-              {' '}
-              <Card my={4}>
-                <Heading mb={[3]}>Categories</Heading>
-                <Pie data={categories} total={total} />
-              </Card>
-              <Card my={4}>
-                <Heading mb={[4]}>Months</Heading>
-                <MonthsBar
-                  // @ts-ignore
-                  data={months}
-                />
-              </Card>
-            </>
-          )}
-        </Container>
-      </main>
-    </Box>
+
+      <PageContent>
+        {dbLoading || loading ? (
+          <Loading />
+        ) : (
+          <>
+            {' '}
+            <Card my={4}>
+              <Heading mb={[3]}>Categories</Heading>
+              <Pie data={categories} total={total} />
+            </Card>
+            <Card my={4}>
+              <Heading mb={[4]}>Months</Heading>
+              <MonthsBar
+                // @ts-ignore
+                data={months}
+              />
+            </Card>
+          </>
+        )}
+      </PageContent>
+    </Layout>
   );
 };

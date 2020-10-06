@@ -28,7 +28,7 @@ export default () => {
 
         <Box variant='navLinkHolder'>
           <NavigationLink to='/profile'>
-            <span role='img' aria-label='Profide link icon'>
+            <span role='img' aria-label='Profile link icon'>
               👱‍♀️
             </span>
             <p>Profile</p>

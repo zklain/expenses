@@ -67,6 +67,9 @@ export default {
         margin: 0,
         padding: 0,
       },
+      '&:-webkit-scrollbar ': {
+        backgroundColor: 'transparent',
+      },
     },
   },
   shadows: {
