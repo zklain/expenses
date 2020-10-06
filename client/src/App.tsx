@@ -23,6 +23,9 @@ function App() {
 
 export default App;
 
+// todo: scroll fixed
+// todo: add form
+// todo: form labels
 // todo: no expenses graphs
 // todo: seed/ clear separate loading
 // todo: replace momentjs with https://date-fns.org/v2.16.1/docs/Getting-Started

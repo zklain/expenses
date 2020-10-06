@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useContext } from 'react';
 import { Box, Flex } from 'theme-ui';
+import { AddExpenseContext } from '../AddExpense/AddExpenseContext';
 
 export const Layout = ({ children }: { children: ReactNode }) => (
   <Flex
@@ -14,26 +15,31 @@ export const Layout = ({ children }: { children: ReactNode }) => (
   </Flex>
 );
 
-export const PageContent = ({ children }: { children: ReactNode }) => (
-  <Box
-    sx={{
-      position: 'relative',
-      width: '100%',
-      height: '100%',
-    }}>
+export const PageContent = ({ children }: { children: ReactNode }) => {
+  const { formOpen } = useContext(AddExpenseContext);
+
+  return (
     <Box
       sx={{
-        height: '100%',
-        position: 'absolute',
+        position: 'relative',
         width: '100%',
-        px: [4],
-        overflowY: 'scroll',
-        pb: ['150px'],
-        '&:-webkit-scrollbar ': {
-          backgroundColor: 'transparent',
-        },
+        height: '100%',
       }}>
-      {children}
+      <Box
+        className={formOpen ? 'no-scroll' : ''}
+        sx={{
+          height: '100%',
+          position: 'absolute',
+          width: '100%',
+          px: [3],
+          overflowY: 'scroll',
+          pb: ['150px'],
+          '&:-webkit-scrollbar ': {
+            backgroundColor: 'transparent',
+          },
+        }}>
+        {children}
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};

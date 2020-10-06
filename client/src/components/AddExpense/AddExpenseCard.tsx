@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useEffect, useState } from 'react';
 import { Box, Button, Flex, IconButton } from 'theme-ui';
 import { ExpansesForm } from './AddExpenseForm';
 import { GrClose } from 'react-icons/gr';
+import { AddExpenseContext } from './AddExpenseContext';
 
 export const ExpansesFormCard = ({
   open,
@@ -20,24 +21,23 @@ export const ExpansesFormCard = ({
         transition: 'all 0.3s ease-in-out',
         width: '100%',
         position: 'fixed',
-        borderRadius: '30px',
-        paddingBottom: '50px',
+        borderRadius: '30px 30px 0 0',
+        py: [4],
         '&.closed': {
-          // bottom: '-500px',
           transform: 'translate3d(0, 0%, 0)',
         },
         '&.opened': {
-          // bottom: '20px',
-          transform: 'translate3d(0, -90%, 0)',
-          // transform: 'scaleY(1)',
-          // marginTop: 0,
+          transform: 'translate3d(0, -100%, 0)',
         },
       }}
       className={open ? 'opened' : 'closed'}>
       <Box px={4} pt={3}>
-        <IconButton variant='close' onClick={() => setOpen(false)}>
-          <GrClose />
-        </IconButton>
+        <Box sx={{ position: 'absolute', top: [3], right: [4] }}>
+          <IconButton onClick={() => setOpen(false)}>
+            <GrClose style={{ width: 24, height: 24 }} />
+          </IconButton>
+        </Box>
+
         <ExpansesForm setOpen={setOpen} open={open} />
       </Box>
     </Box>
@@ -45,17 +45,9 @@ export const ExpansesFormCard = ({
 };
 
 export const AddExpense = () => {
-  const [formOpen, setFormOpen] = useState(false);
+  // const [formOpen, setFormOpen] = useState(false);
 
-  // todo: button in navbar
-
-  useEffect(() => {
-    if (formOpen) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
-    }
-  }, [formOpen]);
+  const { formOpen, setFormOpen } = useContext(AddExpenseContext);
 
   return (
     <Flex
@@ -73,7 +65,7 @@ export const AddExpense = () => {
           position: 'fixed',
           display: formOpen ? 'none' : 'block',
           backgroundColor: 'green',
-          color: '#000',
+          color: 'text',
           padding: '0',
           borderRadius: '50%',
           borderWidth: 0,

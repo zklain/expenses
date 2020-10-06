@@ -86,7 +86,7 @@ const _create = async () => {
   });
 
   if (process.env.NODE_ENV !== 'production') {
-    await _seedDb(db);
+    // await _seedDb(db);
   }
 
   // // create collections

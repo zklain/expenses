@@ -4,12 +4,15 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { DatabaseProvider } from './db/DatabaseContext';
 import { ThemeContextProvider } from './styles/ThemeContext';
+import { AddExpenseContextProvider } from './components/AddExpense/AddExpenseContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <ThemeContextProvider>
       <DatabaseProvider>
-        <App />
+        <AddExpenseContextProvider>
+          <App />
+        </AddExpenseContextProvider>
       </DatabaseProvider>
     </ThemeContextProvider>
   </React.StrictMode>,

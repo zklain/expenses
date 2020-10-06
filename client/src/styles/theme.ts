@@ -97,19 +97,35 @@ export default {
   },
   forms: {
     input: {
-      borderRadius: 7,
+      pt: [2],
+      py: [3],
+      px: [3],
+      borderRadius: 12,
+      background: 'white',
+      border: 'none',
       '&:focus': {
         outline: 'none',
         borderColor: '#a515ec',
-        boxShadow: '0 0 0 2px #a515ec',
+        boxShadow: '0 0 3px -1px #a515ec',
       },
     },
+    label: {
+      // ml: [3],
+      mb: [1],
+      mt: [2],
+      fontWeight: 600,
+    },
+
     select: {
-      borderRadius: 7,
+      py: [3],
+      px: [3],
+      background: 'white',
+      border: 'none',
+      borderRadius: 12,
       '&:focus': {
         outline: 'none',
         borderColor: '#a515ec',
-        boxShadow: '0 0 0 2px #a515ec',
+        boxShadow: '0 0 3px -1px #a515ec',
       },
     },
   },
