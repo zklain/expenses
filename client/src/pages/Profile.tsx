@@ -52,7 +52,10 @@ export default () => {
                   'Workin...'
                 ) : (
                   <>
-                    <span role='img'>🔥</span> Clear DB
+                    <span role='img' aria-label='Clear DB'>
+                      🔥
+                    </span>{' '}
+                    Clear DB
                   </>
                 )}
               </Button>

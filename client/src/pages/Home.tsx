@@ -1,12 +1,14 @@
-import { useExpenses } from '../db/useExpenses';
-import React, { useContext } from 'react';
-import { Box, Heading } from 'theme-ui';
+import { useExpenses } from '../hooks/useExpanses/useExpenses.hook';
+import React, { ReactNode, useContext } from 'react';
+import { Box, Flex, Heading, Spinner } from 'theme-ui';
 import Total from '../components/Expense/Total';
 import AddExpanseForm from '../components/Expense/AddExpenseForm';
 import ExpansesList from '../components/Expense/ExpensesList';
 import MonthsSwitcher from '../components/Expense/TimeRangeControl';
-import Header from '../components/layout/Header';
 import { DatabaseContext } from '../db/DatabaseContext';
+import Loading from '../components/Loading';
+import { Header, Layout } from '../components/layout';
+import { PageContent } from '../components/layout/PageLayout';
 
 export default () => {
   const {
@@ -23,36 +25,32 @@ export default () => {
 
   const { loading: dbLoading } = useContext(DatabaseContext);
 
+  // TODO: flex for layout
+
   return (
-    <>
+    <Layout>
       <Header>
         <Heading variant='headerHeading'>Expenses</Heading>
-        <Box py={2}>
-          <Total
-            currentMonthName={currentMonthName}
-            total={total}
-            shownYear={year}
-          />
-          <MonthsSwitcher
-            ofMonths={ofMonths}
-            monthsBack={monthsBack}
-            prevMonth={prevMonth}
-            nextMonth={nextMonth}
-          />
-        </Box>
+        <Total
+          currentMonthName={currentMonthName}
+          total={total}
+          shownYear={year}
+        />
+        <MonthsSwitcher
+          ofMonths={ofMonths}
+          monthsBack={monthsBack}
+          prevMonth={prevMonth}
+          nextMonth={nextMonth}
+        />
       </Header>
-      <main>
-        <Box pb={6} pt={2} px={4} mt='10rem'>
-          {dbLoading ? (
-            <Heading>DB Loading...</Heading>
-          ) : (
-            <>
-              <ExpansesList expenses={expenses} queryLoading={queryLoading} />
-            </>
-          )}
-        </Box>
-        <AddExpanseForm />
-      </main>
-    </>
+      <PageContent>
+        {dbLoading || queryLoading ? (
+          <Loading />
+        ) : (
+          <ExpansesList expenses={expenses} />
+        )}
+      </PageContent>
+      <AddExpanseForm />
+    </Layout>
   );
 };

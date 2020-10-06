@@ -34,20 +34,21 @@ export const DatabaseProvider = ({
   const [loading, setLoading] = useState(true);
   const [ofMonths, setOfMonths] = useState(0);
   const [error, setError] = useState(null);
+  const [updatesSubs, setUpdatesSub] = useState(null);
 
   useEffect(() => {
     (async () => {
       try {
-        const expansesDb = await DB.getDB();
-        setDb(expansesDb);
+        const expensesDb = await DB.getDB();
+        setDb(expensesDb);
         setLoading(false);
-        const first = await expansesDb.expenses
+        const first = await expensesDb.expenses
           .find()
           .limit(1)
           .sort({ createdAt: 'asc' })
           .exec();
 
-        const last = await expansesDb.expenses
+        const last = await expensesDb.expenses
           .find()
           .limit(1)
           .sort({ createdAt: 'desc' })
@@ -60,7 +61,15 @@ export const DatabaseProvider = ({
         } else {
           setOfMonths(0);
         }
+
+        // todo: pass state change handling function to the subscribe
+        // const sub = expensesDb.expenses.$.subscribe((changeEvent) =>
+        //   console.log(changeEvent)
+        // );
+
         // @ts-ignore
+
+        return () => sub.unsubsribe();
       } catch (error) {
         setError(error);
       }

@@ -3,6 +3,11 @@ import { Box } from 'theme-ui';
 
 export default ({ children = null }: { children: any }) => (
   <header>
-    <Box variant='header'>{children}</Box>
+    <Box
+      sx={{
+        py: [3, 4],
+      }}>
+      {children}
+    </Box>
   </header>
 );

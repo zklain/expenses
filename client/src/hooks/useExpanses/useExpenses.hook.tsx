@@ -1,25 +1,11 @@
-import { useEffect, useContext, useReducer, useState } from 'react';
-import { ExpenseDocType } from '../@types/expense';
+import { useEffect, useContext, useReducer } from 'react';
+import { ExpenseDocType } from '../../@types/expense';
 import { Subscription } from 'rxjs/internal/Subscription';
-import {
-  countTotal,
-  buildDateRangeQry,
-  getMonthStartEnd,
-  groupByDay,
-} from '../utils/query-utils';
-import { DatabaseContext } from './DatabaseContext';
+import { buildDateRangeQry, getMonthStartEnd } from '../../utils/query-utils';
+import { DatabaseContext } from '../../db/DatabaseContext';
 import moment from 'moment';
 import { MangoQuery } from 'rxdb/dist/types/types';
-
-interface ExpensesState {
-  loading: boolean;
-  query: MangoQuery<ExpenseDocType>;
-  monthsBack: number;
-  currentMonthName: string;
-  shown: Array<ExpenseDocType[]>;
-  total: number;
-  year: string;
-}
+import { ExpensesState, reducer } from './useExpenses.reducer';
 
 const { start, end } = getMonthStartEnd({ monthsBack: 0 });
 
@@ -31,52 +17,6 @@ const useExpensesInitState: ExpensesState = {
   shown: [],
   total: 0,
   year: '',
-};
-
-type UseExpensesActionType =
-  | 'CHANGE_MONTH'
-  | 'SET_SHOWN'
-  | 'SET_QUERY_LOADING'
-  | 'SET_QUERY';
-
-type UseExpensesAction = {
-  type: UseExpensesActionType;
-  payload?: any;
-};
-
-const reducer = (state: ExpensesState, action: UseExpensesAction) => {
-  switch (action.type) {
-    case 'CHANGE_MONTH':
-      const monthsBack = state.monthsBack + action.payload;
-      const { start, end } = getMonthStartEnd({ monthsBack });
-      const query = buildDateRangeQry({ from: start, to: end });
-      const currentMonthName = moment(start).format('MMMM');
-      return {
-        ...state,
-        monthsBack,
-        query,
-        currentMonthName,
-      };
-    case 'SET_SHOWN':
-      const year = setYear(action.payload);
-      const total = countTotal(action.payload);
-
-      const orderedByDay = groupByDay(action.payload);
-
-      return {
-        ...state,
-        shown: orderedByDay,
-        year: year || '',
-        total,
-        loading: false,
-      };
-    case 'SET_QUERY_LOADING':
-      return { ...state, loading: action.payload };
-    case 'SET_QUERY':
-      return { ...state, query: action.payload };
-    default:
-      return state;
-  }
 };
 
 export const setYear = (shown: ExpenseDocType[]): string | undefined => {

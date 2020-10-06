@@ -158,57 +158,58 @@ describe('query utils', () => {
   });
 
   describe('group by day', () => {
+    const testDocs: ExpenseDocType[] = [
+      {
+        id: '310b9c47-2518-40b2-96d0-9089bce320a0',
+        amount: 70,
+        createdAt: '2020-01-15:00:00.000Z',
+        updatedAt: '2020-01-15:00:00.000Z',
+        category: 'cigaretes',
+        name: 'Expanse 6 65',
+      },
+
+      {
+        id: '2131c8a1-60fc-4216-924c-2ffec03264b6',
+        amount: 84,
+        createdAt: '2019-11-31T21:00:00.000Z',
+        updatedAt: '2019-11-31T23:00:00.000Z',
+        category: 'cigaretes',
+        name: 'Expanse 7 65',
+      },
+      {
+        id: '28f7a4a2-59f2-4d38-aa47-54aeb7827b3f',
+        amount: 80,
+        createdAt: '2019-11-31T21:00:00.000Z',
+        updatedAt: '2019-11-31T23:00:00.000Z',
+        category: 'cigaretes',
+        name: 'Expanse 7 23',
+      },
+      {
+        id: '225ef26b-6a50-4a21-baaa-42f54535f980',
+        amount: 90,
+        createdAt: '2019-11-30T21:00:00.000Z',
+        updatedAt: '2019-11-30T23:00:00.000Z',
+        category: 'cigaretes',
+        name: 'Expanse 8 37',
+      },
+      {
+        id: '225ef26b-6a50-4a21-baaa-42f54535f980',
+        amount: 180,
+        createdAt: '2019-11-30T21:00:00.000Z',
+        updatedAt: '2019-11-30T23:00:00.000Z',
+        category: 'cigaretes',
+        name: 'Expanse 8 37',
+      },
+      {
+        id: '225ef26b-6a50-4a21-baaa-42f54535f980',
+        amount: 90,
+        createdAt: '2019-11-30T21:00:00.000Z',
+        updatedAt: '2019-11-30T23:00:00.000Z',
+        category: 'cigaretes',
+        name: 'Expanse 8 37',
+      },
+    ];
     it('should group by day', () => {
-      const testDocs: ExpenseDocType[] = [
-        {
-          id: '225ef26b-6a50-4a21-baaa-42f54535f980',
-          amount: 90,
-          createdAt: '2019-11-30T21:00:00.000Z',
-          updatedAt: '2019-11-30T23:00:00.000Z',
-          category: 'cigaretes',
-          name: 'Expanse 8 37',
-        },
-        {
-          id: '225ef26b-6a50-4a21-baaa-42f54535f980',
-          amount: 180,
-          createdAt: '2019-11-30T21:00:00.000Z',
-          updatedAt: '2019-11-30T23:00:00.000Z',
-          category: 'cigaretes',
-          name: 'Expanse 8 37',
-        },
-        {
-          id: '225ef26b-6a50-4a21-baaa-42f54535f980',
-          amount: 90,
-          createdAt: '2019-11-30T21:00:00.000Z',
-          updatedAt: '2019-11-30T23:00:00.000Z',
-          category: 'cigaretes',
-          name: 'Expanse 8 37',
-        },
-        {
-          id: '2131c8a1-60fc-4216-924c-2ffec03264b6',
-          amount: 84,
-          createdAt: '2019-11-31T21:00:00.000Z',
-          updatedAt: '2019-11-31T23:00:00.000Z',
-          category: 'cigaretes',
-          name: 'Expanse 7 65',
-        },
-        {
-          id: '28f7a4a2-59f2-4d38-aa47-54aeb7827b3f',
-          amount: 80,
-          createdAt: '2019-11-31T21:00:00.000Z',
-          updatedAt: '2019-11-31T23:00:00.000Z',
-          category: 'cigaretes',
-          name: 'Expanse 7 23',
-        },
-        {
-          id: '310b9c47-2518-40b2-96d0-9089bce320a0',
-          amount: 70,
-          createdAt: '2020-01-15:00:00.000Z',
-          updatedAt: '2020-01-15:00:00.000Z',
-          category: 'cigaretes',
-          name: 'Expanse 6 65',
-        },
-      ];
       const result = groupByDay(testDocs);
       expect(result.length).toBe(3);
       expect(result[0].length).toBe(1);
@@ -219,6 +220,14 @@ describe('query utils', () => {
     it('should not throw when empty', () => {
       const res = groupByDay([]);
       expect(res).toBeDefined();
+    });
+
+    it('should be in descending order', () => {
+      const res = groupByDay(testDocs);
+      const dateDifference =
+        new Date(res[0][0].createdAt).getDate() -
+        new Date(res[1][0].createdAt).getDate();
+      expect(dateDifference).toBeGreaterThan(0);
     });
   });
 });

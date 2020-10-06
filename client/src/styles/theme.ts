@@ -40,7 +40,6 @@ export default {
       },
     },
   },
-
   styles: {
     ul: {
       listStyle: 'none',
@@ -112,6 +111,7 @@ export default {
     primary: {
       backgroundColor: 'green',
       color: 'primary',
+      p: [1],
     },
     monthSwitch: {
       color: 'primary',
@@ -140,7 +140,6 @@ export default {
       fontSize: [3],
     },
   },
-
   variants: {
     links: {
       navbarLink: {},
@@ -148,9 +147,9 @@ export default {
     header: {
       backgroundColor: 'background',
       width: '100%',
-      zIndex: '200',
-      position: 'fixed',
-      top: 0,
+      // zIndex: '200',
+      // position: 'fixed',
+      // top: 0,
       px: 4,
       py: 3,
     },
@@ -189,10 +188,10 @@ export default {
     navbar: {
       boxShadow: 'borderTop',
       width: '100%',
+      height: ['3.5rem'],
       bottom: 0,
       position: 'fixed',
       backgroundColor: 'background',
-      height: 'auto',
       justifyContent: 'space-evenly',
       alignItems: 'center',
       zIndex: 100,

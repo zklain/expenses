@@ -23,7 +23,8 @@ export const countTotal = (expanses: ExpenseDocType[] | undefined) => {
 };
 
 /**
- * Get a ISOString date specified by months back.
+ * Get a ISOString date for begging and start of a month
+ * specified starting date and number of months back.
  *
  * @param monthsBack number of months back from the current month.
  * @returns a object containing a `from` and `to` strings,
@@ -36,8 +37,6 @@ export const getMonthStartEnd = ({
   startDate?: string | Date;
   monthsBack?: number;
 }): { start: string; end: string } => {
-  // todo: check if date
-
   const start = moment(startDate)
     .subtract(monthsBack, 'month')
     .startOf('months')
@@ -166,6 +165,12 @@ export const countMonthsAvg = (
   };
 };
 
+/**
+ * Count total for categories.
+ *
+ * @param data Expense documents
+ * @returns ExpenseCategoryCount[] or empty array if no categories were passed.
+ */
 export const countForCategory = (
   data: ExpenseDocType[] | undefined
 ): ExpanseCategoryCount[] => {
@@ -196,17 +201,19 @@ export const groupByDay = (docs: ExpenseDocType[]): Array<ExpenseDocType[]> => {
   if (!docs.length) return [];
 
   let grouped: Array<ExpenseDocType[]> = [];
-  let i = docs.length - 1;
+  let i = 0;
   let forDay = new Date(docs[i].createdAt).getDate();
   let docsForDay: ExpenseDocType[] = [];
-  while (i >= 0) {
+
+  while (i < docs.length) {
     let currentDocDay = new Date(docs[i].createdAt).getDate();
+
     if (forDay === currentDocDay) {
       docsForDay.push(docs[i]);
-      if (i === 0) {
+      i++;
+      if (i === docs.length) {
         grouped.push(docsForDay);
       }
-      i--;
     } else {
       grouped.push(docsForDay);
       docsForDay = [];

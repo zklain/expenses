@@ -24,6 +24,8 @@ export default () => {
           </NavigationLink>
         </Box>
 
+        <Box>{/* // todo: add expense */}</Box>
+
         <Box variant='navLinkHolder'>
           <NavigationLink to='/profile'>
             <span role='img' aria-label='Profide link icon'>
