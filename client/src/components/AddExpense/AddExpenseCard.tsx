@@ -1,7 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Box, Button, Flex } from 'theme-ui';
+import { Box, Button, Flex, IconButton } from 'theme-ui';
 import { ExpansesForm } from './AddExpenseForm';
+import { GrClose } from 'react-icons/gr';
 
 export const ExpansesFormCard = ({
   open,
@@ -34,9 +35,9 @@ export const ExpansesFormCard = ({
       }}
       className={open ? 'opened' : 'closed'}>
       <Box px={4} pt={3}>
-        <Button variant='close' onClick={() => setOpen(false)}>
-          X
-        </Button>
+        <IconButton variant='close' onClick={() => setOpen(false)}>
+          <GrClose />
+        </IconButton>
         <ExpansesForm setOpen={setOpen} open={open} />
       </Box>
     </Box>
