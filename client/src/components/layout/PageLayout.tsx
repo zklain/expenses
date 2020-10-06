@@ -33,7 +33,6 @@ export const PageContent = ({ children }: { children: ReactNode }) => {
           width: '100%',
           px: [3],
           overflowY: 'scroll',
-          pb: ['150px'],
           '&:-webkit-scrollbar ': {
             backgroundColor: 'transparent',
           },
