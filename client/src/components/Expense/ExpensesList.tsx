@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Expense from './Expense';
 import { ExpenseDocType } from '../../@types/expense';
 import { Box, Heading } from 'theme-ui';
 import Date from './Date';
+
+const ExpanseDayHolder = ({ children }: { children: ReactNode }) => (
+  <Box sx={{ mt: [4], '&:nth-of-type(1)': { mt: [0] } }}>{children}</Box>
+);
+
+const DayExpensesList = ({ expenses }: { expenses: ExpenseDocType[] }) => (
+  <Box
+    sx={{
+      borderRadius: '12px',
+      backgroundColor: 'white',
+      // px: [3],
+      // py: [3],
+      mt: [2],
+    }}>
+    {expenses.map((exp) => (
+      <Expense key={exp.id} {...exp} />
+    ))}
+  </Box>
+);
 
 export default ({ expenses }: { expenses: Array<ExpenseDocType[]> }) => {
   if (!expenses.length) {
@@ -12,14 +31,10 @@ export default ({ expenses }: { expenses: Array<ExpenseDocType[]> }) => {
   return (
     <>
       {expenses.map((forDay: ExpenseDocType[], index: number) => (
-        <Box
-          key={forDay[0].createdAt}
-          sx={{ mt: [3], '&:nth-of-type(1)': { mt: [0] } }}>
+        <ExpanseDayHolder key={forDay[0].createdAt}>
           <Date timeString={forDay[0].createdAt} />
-          {forDay.map((exp) => (
-            <Expense key={exp.id} {...exp} />
-          ))}
-        </Box>
+          <DayExpensesList expenses={forDay} />
+        </ExpanseDayHolder>
       ))}
     </>
   );

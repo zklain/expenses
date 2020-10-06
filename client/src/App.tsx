@@ -4,18 +4,19 @@ import Nav from './components/layout/Nav';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Stats from './pages/Stats';
 import Profile from './pages/Profile';
+import { Layout } from './components/layout';
 
 function App() {
   return (
     <Router>
-      <div className='App'>
+      <Layout>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/stats' element={<Stats />} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
-        <Nav />
-      </div>
+      </Layout>
+      <Nav />
     </Router>
   );
 }

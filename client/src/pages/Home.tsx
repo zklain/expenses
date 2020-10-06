@@ -1,8 +1,8 @@
 import { useExpenses } from '../hooks/useExpanses/useExpenses.hook';
 import React, { ReactNode, useContext } from 'react';
-import { Box, Flex, Heading, Spinner } from 'theme-ui';
+import { Heading } from 'theme-ui';
 import Total from '../components/Expense/Total';
-import AddExpanseForm from '../components/Expense/AddExpenseForm';
+import AddExpanse from '../components/AddExpense/';
 import ExpansesList from '../components/Expense/ExpensesList';
 import MonthsSwitcher from '../components/Expense/TimeRangeControl';
 import { DatabaseContext } from '../db/DatabaseContext';
@@ -25,10 +25,8 @@ export default () => {
 
   const { loading: dbLoading } = useContext(DatabaseContext);
 
-  // TODO: flex for layout
-
   return (
-    <Layout>
+    <>
       <Header>
         <Heading variant='headerHeading'>Expenses</Heading>
         <Total
@@ -50,7 +48,7 @@ export default () => {
           <ExpansesList expenses={expenses} />
         )}
       </PageContent>
-      <AddExpanseForm />
-    </Layout>
+      <AddExpanse />
+    </>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import { Button, Box, Flex, Label, Input, Select } from 'theme-ui';
-import { categoryIconsMap } from './CategoryIcon';
+import { categoryIconsMap } from '../Expense/CategoryIcon';
 import { DatabaseContext } from '../../db/DatabaseContext';
 
 interface ISubmitExpanse {
@@ -10,7 +10,7 @@ interface ISubmitExpanse {
   amount: number;
 }
 
-const ExpansesForm = ({ setOpen, open }: any) => {
+export const ExpansesForm = ({ setOpen, open }: any) => {
   const { addExpanse } = useContext(DatabaseContext);
   const inputRef = useRef(null);
 
@@ -112,73 +112,4 @@ const ExpansesForm = ({ setOpen, open }: any) => {
   );
 };
 
-const ExpansesFormCard = ({
-  open,
-  setOpen,
-}: {
-  open: boolean;
-  setOpen: any;
-}) => {
-  return (
-    <Box variant='formCard' className={open ? 'opened' : 'closed'}>
-      <Box px={4} pt={3}>
-        <Button variant='close' onClick={() => setOpen(false)}>
-          X
-        </Button>
-        <ExpansesForm setOpen={setOpen} open={open} />
-      </Box>
-    </Box>
-  );
-};
-
-export default () => {
-  const [formOpen, setFormOpen] = useState(false);
-
-  useEffect(() => {
-    if (formOpen) {
-      document.body.classList.add('no-scroll');
-    } else {
-      document.body.classList.remove('no-scroll');
-    }
-  }, [formOpen]);
-
-  return (
-    <Flex
-      sx={{
-        width: '100%',
-        textAlign: 'center',
-        justifyContent: 'center',
-      }}>
-      <ExpansesFormCard open={formOpen} setOpen={setFormOpen} />
-      <Button
-        onClick={() => setFormOpen(!formOpen)}
-        sx={{
-          bottom: '4rem',
-          right: '2rem',
-          position: 'fixed',
-          display: formOpen ? 'none' : 'block',
-          backgroundColor: 'green',
-          color: '#000',
-          padding: '0',
-          borderRadius: '50%',
-          borderWidth: 0,
-          borderColor: 'grey',
-          height: '4rem',
-          width: '4rem',
-          fontSize: '2rem',
-          fontWeight: 400,
-          cursor: 'pointer',
-          borderImage: 'none',
-          boxShadow: '0 1px 6px grey',
-          transition: 'all 0.1s ease-in-out',
-          zIndex: 9999,
-          '&:hover': {
-            boxShadow: '0 0px 3px grey',
-          },
-        }}
-        type='button'>
-        +
-      </Button>
-    </Flex>
-  );
-};
+// todo: framer motion

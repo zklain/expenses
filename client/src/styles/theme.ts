@@ -3,7 +3,7 @@ export default {
   colors: {
     grey: '#a8a8a8',
     primary: '#000',
-    background: '#fff',
+    background: '#f4f4f4',
     green: '#15eca5',
     red: '#ec155c',
     purple: '#a515ec',
@@ -11,6 +11,7 @@ export default {
     blue: '#22ecff',
     darkBlue: '#6321ff',
     shadow: '#efefef',
+    white: '#fff',
     modes: {
       dark: {
         background: '#383a59',
@@ -24,11 +25,12 @@ export default {
         blue: '#22ecff',
         darkBlue: '#6321ff',
         shadow: '#efefef',
+        white: '#383a59',
       },
       light: {
         text: '#000',
         primary: '#000',
-        background: '#fff',
+        background: '#f3f3f3',
         grey: '#a8a8a8',
         green: '#15eca5',
         red: '#ec155c',
@@ -37,6 +39,7 @@ export default {
         blue: '#22ecff',
         darkBlue: '#6321ff',
         shadow: '#efefef',
+        white: '#fff',
       },
     },
   },
@@ -168,26 +171,7 @@ export default {
       borderRadius: '20px',
       p: [3],
     },
-    formCard: {
-      zIndex: 2,
-      backgroundColor: 'background',
-      boxShadow: '0 1px 3px grey',
-      transition: 'all 0.3s ease-in-out',
-      width: '100%',
-      position: 'fixed',
-      borderRadius: '30px',
-      paddingBottom: '50px',
-      '&.closed': {
-        bottom: '-500px',
-        // marginTop: '400px',
-        // transform: 'scaleY(0)',
-      },
-      '&.opened': {
-        bottom: '20px',
-        // transform: 'scaleY(1)',
-        // marginTop: 0,
-      },
-    },
+    formCard: {},
     navbar: {
       boxShadow: 'borderTop',
       width: '100%',

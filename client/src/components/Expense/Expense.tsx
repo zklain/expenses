@@ -14,11 +14,14 @@ export default ({ id, amount, name, createdAt, category }: ExpenseDocType) => {
       <Flex
         sx={{
           // py,
-          px: [2],
-          py: [2],
+          px: [3],
+          py: [3],
           justifyContent: 'space-between',
           alignItems: 'center',
           borderRadius: '0.5rem',
+          // '&:nth-of-type(n + 1)': {
+          //   margin
+          // },
         }}>
         {/* <h4>{name}</h4> */}
         <CategoryIcon category={category ? category : 'notSet'} />

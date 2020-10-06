@@ -52,7 +52,7 @@ export default () => {
   };
 
   return (
-    <Layout>
+    <>
       <Header>
         <Heading variant='headerHeading'>Stats</Heading>
         {/* <Box>
@@ -81,6 +81,6 @@ export default () => {
           </>
         )}
       </PageContent>
-    </Layout>
+    </>
   );
 };
