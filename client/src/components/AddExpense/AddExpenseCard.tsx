@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { Box, Button, Flex, IconButton } from 'theme-ui';
+import { Box, Button, Text, Flex, IconButton } from 'theme-ui';
 import { ExpansesForm } from './AddExpenseForm';
 import { GrClose } from 'react-icons/gr';
+import { FaPlusCircle } from 'react-icons/fa';
 import { AddExpenseContext } from './AddExpenseContext';
-import { AnimatePresence, motion } from 'framer-motion';
 
 export const ExpansesFormCard = ({
   open,
@@ -57,35 +57,32 @@ export const AddExpense = () => {
         justifyContent: 'center',
       }}>
       <ExpansesFormCard open={formOpen} setOpen={setFormOpen} />
-      <Button
+      <Box
         onClick={() => setFormOpen(!formOpen)}
         sx={{
-          bottom: '4rem',
-          right: '2rem',
+          bottom: '5rem',
+          right: [3],
           position: 'fixed',
-          display: formOpen ? 'none' : 'block',
-          backgroundColor: 'green',
-          color: 'text',
-          padding: '0',
-          borderRadius: '50%',
+          display: 'flex',
+          color: 'purple',
+          borderRadius: '12px',
           borderWidth: 0,
-          borderColor: 'grey',
-          height: '4rem',
-          width: '4rem',
-          fontSize: '2rem',
           fontWeight: 400,
           cursor: 'pointer',
           borderImage: 'none',
-          boxShadow: '0 1px 6px grey',
           transition: 'all 0.1s ease-in-out',
-          zIndex: 9999,
-          '&:hover': {
-            boxShadow: '0 0px 3px grey',
-          },
+          fontSize: [2],
+          py: [2],
+          px: [3],
+          justifyContent: 'center',
+          alignItems: 'center',
         }}
-        type='button'>
-        +
-      </Button>
+        as='button'>
+        <Text sx={{ fontWeight: 600, zIndex: 9999, marginRight: 2 }} as='span'>
+          Add Expense
+        </Text>
+        <FaPlusCircle />
+      </Box>
     </Flex>
   );
 };
