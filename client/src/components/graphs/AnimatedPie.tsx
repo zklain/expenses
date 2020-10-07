@@ -114,9 +114,10 @@ const JuicyPie = ({
         rx={14}
         width={width}
         height={height}
+        // @ts-ignore
         fill={
           //@ts-ignore
-          theme.colors.background
+          theme.colors.backgroundLight
         }
       />
       <Group top={centerY + margin.top} left={centerX + margin.left}>

@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Stats from './pages/Stats';
 import Profile from './pages/Profile';
 import { Layout } from './components/layout';
-
+// import AddExpense from './components/AddExpense';
 function App() {
   return (
     <Router>
@@ -15,6 +15,7 @@ function App() {
           <Route path='/stats' element={<Stats />} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
+        {/* <AddExpense /> */}
       </Layout>
       <Nav />
     </Router>

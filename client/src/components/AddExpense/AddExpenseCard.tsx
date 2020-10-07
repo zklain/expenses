@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { useEffect, useState } from 'react';
 import { Box, Button, Flex, IconButton } from 'theme-ui';
 import { ExpansesForm } from './AddExpenseForm';
 import { GrClose } from 'react-icons/gr';
 import { AddExpenseContext } from './AddExpenseContext';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export const ExpansesFormCard = ({
   open,
@@ -32,7 +32,7 @@ export const ExpansesFormCard = ({
       }}
       className={open ? 'opened' : 'closed'}>
       <Box px={4} pt={3}>
-        <Box sx={{ position: 'absolute', top: [3], right: [4] }}>
+        <Box sx={{ position: 'absolute', top: [3], right: [3] }}>
           <IconButton onClick={() => setOpen(false)}>
             <GrClose style={{ width: 24, height: 24 }} />
           </IconButton>

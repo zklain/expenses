@@ -14,6 +14,7 @@ import { DatabaseContext } from '../db/DatabaseContext';
 import Container from '../components/layout/Container';
 import Card from '../components/layout/Card';
 import { ThemeVariant } from '../styles/ThemeContext';
+import { PageContent } from '../components/layout';
 
 export default () => {
   const { clearExpanses, seedDb, loading } = useContext(DatabaseContext);
@@ -23,80 +24,77 @@ export default () => {
       <Header>
         <Heading variant='headerHeading'>Profile</Heading>
       </Header>
-      <main>
-        <Container mt={6}>
-          <Card mb={4}>
+      <PageContent>
+        <Card mb={4}>
+          <Box>
+            <Heading mb={3}>Database</Heading>
+          </Box>
+          <Flex sx={{ alignItems: 'flex-star' }} mb={3}>
             <Box>
-              <Heading mb={3}>Database</Heading>
+              <Text>Seed the DB with test data.</Text>
             </Box>
-            <Flex sx={{ alignItems: 'flex-star' }} mb={3}>
-              <Box>
-                <Text>Seed the DB with test data.</Text>
-              </Box>
-              <Box>
-                <Button variant='primary' disabled={loading} onClick={seedDb}>
-                  {loading ? 'Seeding DB...' : <>Seed DB</>}
-                </Button>
-              </Box>
-            </Flex>
-
-            <Flex
-              sx={{ justifyContent: 'space-between', alignItems: 'center' }}
-              mb={3}>
-              <Text>Clear DB</Text>
-              <Button
-                disabled={loading}
-                backgroundColor='purple'
-                onClick={clearExpanses}>
-                {loading ? (
-                  'Workin...'
-                ) : (
-                  <>
-                    <span role='img' aria-label='Clear DB'>
-                      🔥
-                    </span>{' '}
-                    Clear DB
-                  </>
-                )}
+            <Box>
+              <Button variant='primary' disabled={loading} onClick={seedDb}>
+                {loading ? 'Seeding DB...' : <>Seed DB</>}
               </Button>
-            </Flex>
-          </Card>
-          <Card py={3}>
-            <Box mb={3}>
-              <Heading>Personalization</Heading>
             </Box>
-            <Flex
-              sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
-              <Label>Color Mode</Label>
-              <Label>
-                <Radio
-                  name='dark-mode'
-                  value='dark'
-                  onChange={() => setColorMode('dark')}
-                  checked={colorMode === 'dark'}
-                />
-                Dark
-              </Label>
-              <Label>
-                <Radio
-                  name='light-mode'
-                  value='light'
-                  onChange={() => setColorMode('light')}
-                  checked={colorMode === 'light'}
-                />
-                Light
-              </Label>
+          </Flex>
 
-              {/* <Switch
+          <Flex
+            sx={{ justifyContent: 'space-between', alignItems: 'center' }}
+            mb={3}>
+            <Text>Clear DB</Text>
+            <Button
+              disabled={loading}
+              backgroundColor='purple'
+              onClick={clearExpanses}>
+              {loading ? (
+                'Workin...'
+              ) : (
+                <>
+                  <span role='img' aria-label='Clear DB'>
+                    🔥
+                  </span>{' '}
+                  Clear DB
+                </>
+              )}
+            </Button>
+          </Flex>
+        </Card>
+        <Card py={3}>
+          <Box mb={3}>
+            <Heading>Personalization</Heading>
+          </Box>
+          <Flex sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+            <Label>Color Mode</Label>
+            <Label>
+              <Radio
+                name='dark-mode'
+                value='dark'
+                onChange={() => setColorMode('dark')}
+                checked={colorMode === 'dark'}
+              />
+              Dark
+            </Label>
+            <Label>
+              <Radio
+                name='light-mode'
+                value='light'
+                onChange={() => setColorMode('light')}
+                checked={colorMode === 'light'}
+              />
+              Light
+            </Label>
+
+            {/* <Switch
                 checked={colorMode === 'dark'}
                 onClick={() =>
                   setColorMode(colorMode === 'dark' ? 'light' : 'dark')
                 }
               /> */}
-            </Flex>
-          </Card>
-        </Container>
-      </main>
+          </Flex>
+        </Card>
+      </PageContent>
     </>
   );
 };

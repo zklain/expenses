@@ -66,7 +66,6 @@ export default () => {
           <Loading />
         ) : (
           <>
-            {' '}
             <Card my={4}>
               <Heading mb={[3]}>Categories</Heading>
               <Pie data={categories} total={total} />

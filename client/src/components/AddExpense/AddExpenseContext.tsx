@@ -1,4 +1,10 @@
-import React, { createContext, ReactNode, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export const initState = {
   formOpen: false,
@@ -34,4 +40,9 @@ export const AddExpenseContextProvider = ({
       {children}
     </AddExpenseContext.Provider>
   );
+};
+
+export const useAddExpenseForm = () => {
+  const useExpense = useContext(AddExpenseContext);
+  return useExpense;
 };

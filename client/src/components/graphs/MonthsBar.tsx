@@ -83,10 +83,8 @@ const BarStack = ({
           rx={14}
           x={0}
           y={0}
-          fill={
-            // @ts-ignore
-            theme.colors.background
-          }
+          // @ts-ignore
+          fill={theme.colors.backgroundLight}
         />
         <Group top={margin.top} x={margin.left}>
           {data.months.map((month) => {
