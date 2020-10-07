@@ -95,6 +95,7 @@ export default {
       fontSize: ['2rem', '6rem'],
       fontWeight: 900,
       textAlign: 'left',
+      marginBottom: [3],
     },
   },
   forms: {

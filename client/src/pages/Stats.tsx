@@ -14,8 +14,10 @@ import { useQuery } from '../db/useQuery';
 import MonthsSwitcher, {
   TimeRangeButt,
 } from '../components/Expense/TimeRangeControl';
-import { Layout, PageContent, Header, Card } from '../components/layout';
+import { PageContent, Header, Card } from '../components/layout';
 import Loading from '../components/Loading';
+import { ExpanseCategoryCount, MonthsAvg } from '../@types/expense';
+import NoExpenses from '../components/Expense/NoExpenses';
 
 // todo: needed?
 
@@ -40,7 +42,7 @@ export default () => {
   const loading = !data || !categories || !months;
 
   const moveYear = (years = 0) => {
-    // todo: use current year as base
+    // todo: use current year as start
     // todo: check if next year available
     const query = buildDateRangeQry({
       from: moment().subtract(years, 'year').startOf('year').format(),
@@ -65,21 +67,36 @@ export default () => {
         {dbLoading || loading ? (
           <Loading />
         ) : (
-          <>
-            <Card my={4}>
-              <Heading mb={[3]}>Categories</Heading>
-              <Pie data={categories} total={total} />
-            </Card>
-            <Card my={4}>
-              <Heading mb={[4]}>Months</Heading>
-              <MonthsBar
-                // @ts-ignore
-                data={months}
-              />
-            </Card>
-          </>
+          <Charts categories={categories} months={months} total={total} />
         )}
       </PageContent>
     </>
   );
 };
+
+const Charts = ({
+  categories,
+  months,
+  total,
+}: {
+  categories: ExpanseCategoryCount[];
+  months: MonthsAvg;
+  total: number;
+}) =>
+  categories.length ? (
+    <>
+      <Card my={4}>
+        <Heading mb={[3]}>Categories</Heading>
+        <Pie data={categories} total={total} />
+      </Card>
+      <Card my={4}>
+        <Heading mb={[4]}>Months</Heading>
+        <MonthsBar
+          // @ts-ignore
+          data={months}
+        />
+      </Card>
+    </>
+  ) : (
+    <NoExpenses />
+  );
