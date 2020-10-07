@@ -100,7 +100,7 @@ export const ExpansesForm = ({ setOpen, open }: any) => {
                 ))}
               </Select>
             </Box>
-            <Box>
+            <Box sx={{ mt: 3 }}>
               <Button variant='green' type='submit'>
                 Add
               </Button>

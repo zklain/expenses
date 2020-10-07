@@ -5,7 +5,7 @@ import { Box } from 'theme-ui';
 export default ({ children, ...props }) => (
   <Box
     sx={{
-      backgroundColor: 'white',
+      backgroundColor: 'backgroundLight',
       // boxShadow: '0px 1px 3px grey',
       borderRadius: '20px',
       p: [3],

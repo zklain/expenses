@@ -11,7 +11,6 @@ import {
 } from 'theme-ui';
 import Header from '../components/layout/Header';
 import { DatabaseContext } from '../db/DatabaseContext';
-import Container from '../components/layout/Container';
 import Card from '../components/layout/Card';
 import { ThemeVariant } from '../styles/ThemeContext';
 import { PageContent } from '../components/layout';
@@ -25,11 +24,13 @@ export default () => {
         <Heading variant='headerHeading'>Profile</Heading>
       </Header>
       <PageContent>
-        <Card mb={4}>
+        <Card mb={4} backgroundColor='backgroundLight'>
           <Box>
             <Heading mb={3}>Database</Heading>
           </Box>
-          <Flex sx={{ alignItems: 'flex-star' }} mb={3}>
+          <Flex
+            sx={{ alignItems: 'center', justifyContent: 'space-between' }}
+            mb={3}>
             <Box>
               <Text>Seed the DB with test data.</Text>
             </Box>
@@ -47,27 +48,28 @@ export default () => {
             <Button
               disabled={loading}
               backgroundColor='purple'
+              color='backgroundLight'
               onClick={clearExpanses}>
               {loading ? (
                 'Workin...'
               ) : (
                 <>
+                  Clear DB
                   <span role='img' aria-label='Clear DB'>
                     🔥
                   </span>{' '}
-                  Clear DB
                 </>
               )}
             </Button>
           </Flex>
         </Card>
-        <Card py={3}>
+        <Card py={3} backgroundColor='backgroundLight'>
           <Box mb={3}>
             <Heading>Personalization</Heading>
           </Box>
           <Flex sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
             <Label>Color Mode</Label>
-            <Label>
+            <Label sx={{ marginBottom: 0 }}>
               <Radio
                 name='dark-mode'
                 value='dark'
@@ -76,7 +78,7 @@ export default () => {
               />
               Dark
             </Label>
-            <Label>
+            <Label sx={{ marginBottom: 0 }}>
               <Radio
                 name='light-mode'
                 value='light'

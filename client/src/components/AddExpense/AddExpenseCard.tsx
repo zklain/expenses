@@ -64,7 +64,7 @@ export const AddExpense = () => {
           right: [3],
           position: 'fixed',
           display: 'flex',
-          color: 'purple',
+          // color: 'purple',
           borderRadius: '12px',
           borderWidth: 0,
           fontWeight: 400,

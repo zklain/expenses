@@ -16,7 +16,7 @@ export default {
     modes: {
       dark: {
         background: '#383a59',
-        backgroundLight: '#fff',
+        backgroundLight: '#746699',
         text: '#fff',
         grey: '#a8a8a8',
         primary: '#fff',
@@ -27,7 +27,6 @@ export default {
         blue: '#22ecff',
         darkBlue: '#6321ff',
         shadow: '#f4f4f4',
-        bgLight: '#383a59',
       },
       light: {
         text: '#000',
@@ -146,7 +145,7 @@ export default {
     },
     remove: {
       backgroundColor: 'background',
-      color: 'red',
+      // color: 'backg',
       fontWeight: 900,
       padding: 0,
     },
@@ -163,6 +162,8 @@ export default {
       color: 'black',
       fontWeight: 700,
       fontSize: [3],
+      px: [4],
+      borderRadius: '12px',
     },
   },
   variants: {
@@ -184,7 +185,9 @@ export default {
       margin: '0 auto',
       px: ['32px'],
     },
-    card: {},
+    card: {
+      backgroundColor: 'backgroundLight',
+    },
     formCard: {},
     navbar: {
       boxShadow: 'borderTop',
